@@ -11,18 +11,18 @@ from kivy.logger import Logger
 import pickle
 import struct
 import websocket
-import pyaudio
+#import pyaudio
+from audiostream import get_output, AudioSample
 # standard libraries (python 2.7)
 from threading import *
 import time
-p = pyaudio.PyAudio()
+#p = pyaudio.PyAudio()
 CHUNK = 1024
 Recordframes = []
-stream = p.open(format=p.get_format_from_width(2),
-                        channels=1,
-                        rate=44100,
-                        output=True,
-                        frames_per_buffer=CHUNK)
+stream = get_output(channels=1, buffersize=CHUNK, rate=44100)
+sample = AudioSample()
+stream.add_sample(sample)
+sample.play()
 data = b""
 payload_size = struct.calcsize("Q")
 kv = '''
@@ -110,7 +110,7 @@ class WebSocketTest(App):
         frame = pickle.loads(frame_data)
         Recordframes.append(frame)
         # _VARS['window'].FindElement('-PROG-').Update("listening")
-        stream.write(frame)
+        sample.write(frame)
         return
     def on_ws_error(self, ws, error):
         self.logger.info('WebSocket: [ERROR]  {}'.format(error))
