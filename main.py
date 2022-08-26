@@ -63,13 +63,13 @@ class WS(BoxLayout):
 
 class WebSocketTest(App):
     ws = None
-    url = "wss://fluttersocket23.herokuapp.com/"
+    url = "ws://fluttersocket23.herokuapp.com/"
     btn_txt = StringProperty('press me')
     layout = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super(WebSocketTest, self).__init__(**kwargs)
-        socket_server="wss://fluttersocket23.herokuapp.com/"
+        socket_server="ws://fluttersocket23.herokuapp.com/"
         ws = KivyWebSocket(socket_server,
                            on_message=self.on_ws_message,
                            on_error=self.on_ws_error,
