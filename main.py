@@ -18,7 +18,7 @@ from audiostream import get_output, AudioSample
 from threading import *
 import time
 #p = pyaudio.PyAudio()
-CHUNK = 1024
+CHUNK = 512
 Recordframes = []
 stream = get_output(channels=1, buffersize=CHUNK, rate=44100)
 sample = AudioSample()
