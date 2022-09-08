@@ -36,7 +36,7 @@ kv = '''
         on_press: self.parent.pressed_the_btn()
 '''
 Builder.load_string(kv)
-
+#test 1
 
 class KivyWebSocket(websocket.WebSocketApp):
 
