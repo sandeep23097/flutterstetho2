@@ -101,7 +101,7 @@ class WebSocketTest(App):
         # print('packed_msg_size')
         # print(packed_msg_size)
         data = data[payload_size:]
-        msg_size = struct.unpack("Q", packed_msg_size)[0]
+        msg_size = struct.unpack(">Q", packed_msg_size)[0]
         # print('msg_size')
         # print(msg_size)
         while len(data) < msg_size:
